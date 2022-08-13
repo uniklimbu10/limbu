@@ -174,6 +174,27 @@ function createGraph(data) {
 	//////////////////////////////////////////////////////////////////////////
 	//Create Graph with parsed photodiode data
 	//////////////////////////////////////////////////////////////////////////
+	//svg variable for the margin of the bar chart
+var svg = d3.select("svg"), 
+    margin = 200,  
+    svgWidth = svg.attr("width") - margin,
+    svgHeight = svg.attr("height") - margin
+
+//creates the title on the svg            
+svg.append("text") 
+   .attr("transform", "translate(100,0)") //translates the text
+   .attr("x", 200) 
+   .attr("y", 50)
+   .attr("stroke", "black")
+   .attr("font-size", "32px")
+   .text("Quality Assurance Range Calorimeter (QuARC) GUI")
+
+//variables that are used for scaling the x and y data values into visual valyes such as positions on the graph
+//var xScale = d3.scaleBand().range([0, svgWidth]).padding(0.4), //scaleBand() are useful for charts with a categorial dimension
+  //  yScale = d3.scaleLinear().range([svgHeight, 0]); //scaleLinear() constructs a scale with linear realtionship between input and output
+
+var minY = 0;
+let maxY = 600; //default - typical max charge
   
 };
 
