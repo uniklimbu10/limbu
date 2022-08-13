@@ -15,13 +15,13 @@
   <script>
 
 // Random data
-var data = [5, 2, 3, 1, 3];
+//var data = [5, 2, 3, 1, 3];
 
-//photodiodeLabels_16 = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
+photodiodeLabels_16 = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
 var minY = 0;
 let maxY = 700; 
 
-//var data = [643,530,369,254,342,214,311,127,342,428,187,574,356,609,346,686]; //first 16 data of the photodiode intensity
+var data = [643,530,369,254,342,214,311,127,342,428,187,574,356,609,346,686]; //first 16 data of the photodiode intensity
 var width = 800, height = 300;
 var margins = {top: 50, right: 50, bottom: 50, left: 50};
 
@@ -31,12 +31,12 @@ var svg = d3.select('svg')
             .attr('height', height);
 
 // Scales
-var xScale = d3.scaleBand().domain([1,2,3,4,5])
-	//.domain(photodiodeLabels_16)
+var xScale = d3.scaleBand()//.domain([1,2,3,4,5])
+	.domain(photodiodeLabels_16)
 	.range([0, width - (margins.left+margins.right) ]);
 
-var yScale = d3.scaleLinear().domain([0,5])
-	//.domain([minY, maxY])
+var yScale = d3.scaleLinear()//.domain([0,5])
+	.domain([minY, maxY])
     .range([height - (margins.top+margins.bottom), 0]);
 
 // Margins around SVG canvas
@@ -47,7 +47,7 @@ svg.append('g')
   .enter()
   .append('rect')
     .attr('x', function(d, i) {
-      return xScale(i+1); // We only need the index. i.e. Ordinal
+      return xScale(i+1); // We only need the index. i.e. Ordinal and also need to add +1 for the bar chart to work
     })
     .attr('y', function(d, i) {
       return yScale(d); // We need to pass in the data item
