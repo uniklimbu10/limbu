@@ -165,21 +165,21 @@ button.margin-right {
     margin: 5px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1615px) {
   #pd-16, #pd-16:focus
    {
     margin-left: 5px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1615px) {
   #pd-64, #pd-64:focus
    {
     margin-right: 5px;
     margin-bottom: -5px;
 }
-
+}
 /* COLLAPSE POINT 2: CHROME */
 
 @media screen and (max-width: 1525px) {
@@ -192,7 +192,7 @@ button.margin-right {
     font-size: 18px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1525px) {
   .func-btn
    {
@@ -200,20 +200,20 @@ button.margin-right {
     font-size: 18px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1525px) {
   .PD-btn, .PD-btn:focus
    {
     font-size: 18px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1525px) {
   #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
    {
      font-size: 18px;
 }
-
+}
 /* COLLAPSE POINT 3: CHROME */
 
 @media screen and (max-width: 1375px) {
@@ -226,7 +226,7 @@ button.margin-right {
     font-size: 18px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1375px) {
   .func-btn
    {
@@ -235,14 +235,14 @@ button.margin-right {
     font-size: 18px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1375px) {
   .PD-btn
    {
     height: 70px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1375px) {
   #btn-curve-clicked, #btn-photodiodes-clicked, #btn-errorbars-clicked
    {
@@ -250,7 +250,7 @@ button.margin-right {
      border-width: 5px;
      margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1375px) {
   #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
    {
@@ -258,7 +258,7 @@ button.margin-right {
      width: 110px;
      height:70px;
 }
-
+}
 /* COLLAPSE POINT 4: CHROME */
 
 @media screen and (max-width: 1320px) {
@@ -271,7 +271,7 @@ button.margin-right {
     font-size: 14px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1320px) {
   .func-btn
    {
@@ -281,7 +281,7 @@ button.margin-right {
     font-size: 14px;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1320px) {
   .PD-btn
    {
@@ -291,7 +291,7 @@ button.margin-right {
     text-align: center;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1320px) {
   #btn-curve-clicked, #btn-photodiodes-clicked, #btn-errorbars-clicked
    {
@@ -299,7 +299,7 @@ button.margin-right {
      border-width: 5px;
      margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1320px) {
   #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
    {
@@ -308,7 +308,7 @@ button.margin-right {
      font-size: 14px;
      margin-bottom: -5px;
 }
-
+}
 /* COLLAPSE POINT 5: CHROME */
 
 @media screen and (max-width: 1100px) {
@@ -321,7 +321,7 @@ button.margin-right {
     text-align: center;
     margin-bottom: -5px;
 }
-
+}
 @media screen and (max-width: 1100px) {
   #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
    {
@@ -329,7 +329,7 @@ button.margin-right {
      width: 50px;
      font-size: 14px;
 }
-
+} 
 /* COLLAPSE POINT 6: CHROME */
 
 @media screen and (max-width: 860px) {
@@ -337,18 +337,18 @@ button.margin-right {
    {
     width: 30px;
 }
-
+}
 @media screen and (max-width: 860px) {
   .func-btn
    {
     width: 70px;
 }
-
+}  
 @media screen and (max-width: 860px) {
   #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
    {
      width: 30px;
 }
 
-
-/********************************************************************************/
+}
+/**********************************************

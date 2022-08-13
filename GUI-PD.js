@@ -1,14 +1,8 @@
-/*
-@author: Fern Pannell
-@email: fern.pannell.17@ucl.ac.uk
-@purpose: Web display for the QuARC, photodiode bars WITHOUT curve data
-@version: BD-1.5
-*/
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 //globals
-Chart.defaults.global.animation.duration = 0;
-Chart.defaults.global.defaultFontSize = 20;
+//Chart.defaults.global.animation.duration = 0;
+//Chart.defaults.global.defaultFontSize = 20;
 //data should be written to this file, displaying this data for GUI
 var dataFile = "photodiodeValues.csv";
 //milliseconds - update interval
@@ -126,69 +120,6 @@ if (setPhotodiodes === 16){
 //create empty chart skeleton to show on GUI before any user action
 //////////////////////////////////////////////////////////////////////////////
 
-var chart = new Chart(ctx, {
-	// The type of chart we want to create
-	type: 'bar',
-	// The data for our dataset
-	data: {
-		labels: photodiodeLabels,
-			datasets: [{
-				label: 'Photodiode Intensities',
-				order: 1, //drawing 1st
-				backgroundColor: 'rgb(0,0,0,0.4)', //light grey
-				data: initialData
-			}
-		]
-	},
-	options: {
-		//perfomance improvement
-		tooltips: {enabled: false},
-		hover: {mode: null},
-		layout: {
-        padding: {
-            left: 20,
-            right: 20,
-            top: 40,
-            bottom: 0
-          }
-    },
-		elements: {
-			point: {
-				radius: 0 //remove points on line
-			}
-		},
-		title: {
-			display: true,
-			text: 'Quality Assurance Range Calorimeter GUI',
-			fontColor: 'black',
-			fontSize: 40
-		},
-		legend: {
-			display: true,
-		},
-		scales: {
-			xAxes: [{
-				display: true,
-				scaleLabel: {
-					display: true,
-					labelString: 'Photodiode Number'
-				}
-			}],
-			yAxes: [{
-				display: true,
-				scaleLabel: {
-					display: true,
-					labelString: "Charge / pC",
-				},
-				ticks: {
-					beginAtZero: true,
-					min: minY,
-					max: maxY
-				}
-			}]
-		}
-	}
-	});
 //end of empty chart generation
 
 ////////////////////////////////////////////////////////////////////////////
@@ -243,72 +174,7 @@ function createGraph(data) {
 	//////////////////////////////////////////////////////////////////////////
 	//Create Graph with parsed photodiode data
 	//////////////////////////////////////////////////////////////////////////
-  var chart = new Chart(ctx, {
-  // The type of chart we want to create
-  type: 'bar',
-  // The data for our dataset
-  data: {
-      labels: photodiodeLabels,
-      datasets: [{
-          label: 'Photodiode Intensities',
-					order: 1, //drawing 1st
-          backgroundColor: 'rgb(0,0,0,0.4)', //light grey
-          data: photodiodeData
-      }
-		]
-  },
-  // Configuration for graph
-  options: {
-		//perfomance improvement
-		tooltips: {enabled: false},
-    hover: {mode: null},
-		layout: {
-        padding: {
-            left: 20,
-            right: 20,
-            top: 40,
-            bottom: 0
-        }
-    },
-		elements: {
-			point: {
-				radius: 0
-			}
-		},
-    title: {
-      display: true,
-      text: 'Quality Assurance Range Calorimeter GUI',
-			fontColor: 'black',
-			fontSize: 40
-    },
-    legend: {
-      display: true,
-    },
-    scales: {
-      xAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Photodiode Number'
-        }
-      }
-		],
-      yAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: "Charge / pC",
-        },
-				ticks: {
-					display: true,
-					beginAtZero: true,
-					min: minY,
-					max: maxY
-				}
-      }]
-    }
-  }
-	});
+  
 };
 
 }

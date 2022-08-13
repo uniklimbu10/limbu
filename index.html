@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--
-FERN PANNELL
-fern.pannell.17@ucl.ac.uk
+UNIK LIMBU
 
 HTML base code required for the web display for the QuARC.
 Imports the required JavaScript libraries and links to the developed scripts.
@@ -13,17 +12,15 @@ Links to photodiode bars with curve and error bar pages.
         	<meta charset="UTF-8" />
           <!--<meta name="viewport" content="width=device-width", initial-->
           <!--<meta http-equiv="X-UA-Compatible">-->
-          <!-- Importing the Chart.js charting library
-          <script
-          src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
-          </script>-->
-          <!-- OFFLINE IMPORT -->
-          <!--<script src="/chart.js/dist/Chart.min.js"></script>-->
-          <script src="Chart.min.js"></script>
-          <!-- linking the CSS for the display --->
+          <!-- Accessing D3 library from CDN 
+          <script src="https://d3js.org/d3.v7.min.js"></script> -->
+          <!-- Accesing D3 library by downloading the source code version 7.6.1 (11/07/22)-->
+          <script src="d3.min.js"></script>
+          <!-- linking the CSS for the display -->
           <link rel="stylesheet" href="GUI.css" />
           <!-- Load papaparse.js (parsing library for data) -->
-      		<script src="papaparse.min.js"></script>
+	        <script src="papaparse.min.js"></script> 
+
   </head>
 
   <body>
