@@ -3,10 +3,6 @@
 <head>
   <title>D3 Playground</title>
   <style>
-    svg {
-      background-color: #ccc;
-    }
-
     rect {
       stroke: black;
       stroke-width: 0.5px;
@@ -17,10 +13,17 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
   <svg></svg>
   <script>
+
 // Random data
-var data = [1, 2, 3, 4, 5];
+var data = [5, 2, 3, 1, 3];
+
+//photodiodeLabels_16 = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
+var minY = 0;
+let maxY = 700; 
+
+//var data = [643,530,369,254,342,214,311,127,342,428,187,574,356,609,346,686]; //first 16 data of the photodiode intensity
 var width = 800, height = 300;
-var margins = {top: 30, right: 30, bottom: 30, left: 30};
+var margins = {top: 50, right: 50, bottom: 50, left: 50};
 
 // Create the SVG canvas
 var svg = d3.select('svg')
@@ -28,13 +31,13 @@ var svg = d3.select('svg')
             .attr('height', height);
 
 // Scales
-var xScale = d3.scaleBand()
-	.domain([0, 1, 2, 3, 4])
-	.range([0, width - (margins.left+margins.right)]);
+var xScale = d3.scaleBand().domain([1,2,3,4,5])
+	//.domain(photodiodeLabels_16)
+	.range([0, width - (margins.left+margins.right) ]);
 
-var yScale = d3.scaleLinear()
-	.domain([1, 5])
-    .range([height - (margins.top+margins.bottom)*2, 0]);
+var yScale = d3.scaleLinear().domain([0,5])
+	//.domain([minY, maxY])
+    .range([height - (margins.top+margins.bottom), 0]);
 
 // Margins around SVG canvas
 svg.append('g')
@@ -57,12 +60,34 @@ svg.append('g')
 // X axis
 svg.append('g')
   .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
-  .call(d3.axisBottom(xScale));
+  .call(d3.axisBottom(xScale))
+  .append("text")
+         .attr("y", height- margins.top-220)
+         .attr("x", width-100)
+         .attr("text-anchor", "end")
+         .attr("stroke", "black")
+         .text("x-axis")
 
 // Y axis
 svg.append('g')
   .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
-  .call(d3.axisLeft(yScale));
+  .call(d3.axisLeft(yScale))
+  .append("text")
+           .attr("transform", "rotate(-90)")
+           .attr("y", 18)
+           .attr("dy", "-5.1em")
+           .attr("text-anchor", "end")
+           .attr("stroke", "black")
+           .text("y-axis");
+
+//creates the title on the svg            
+svg.append("text") 
+       .attr("transform", "translate(100,0)") //translates the text
+       .attr("x", 200) 
+       .attr("y", 50)
+       .attr("stroke", "black")
+       .attr("font-size", "32px")
+       .text("TITLE")
 
   </script>
 </body>
