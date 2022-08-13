@@ -1,0 +1,29 @@
+
+button {
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  background-color: #bbeaff; /*pastel blue*/
+  margin: 20px;
+  font-size: 24px;
+}
+
+#add-bort-curve, #btn-photodiodes {
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  background-color: #779ecb; /*fern green*/
+  margin: 20px;
+  font-size: 24px;
+}
+
+/*
+.btn-data {
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  background-color: "#5DBB63";
+  margin: 20px;
+  font-size: 24px;
+}
+*/

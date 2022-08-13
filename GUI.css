@@ -1,0 +1,354 @@
+/*
+Styling for the QuARC GUI.
+Styling HTML buttons beyond default aesthetics.
+Media queries to alter button and text sizing for smaller browser windows
+and devices.
+*/
+/*
+button {
+   height: 60px !important;
+}
+*/
+/* Start, Stop, Range buttons */
+.func-btn {
+  width: 100px;
+  height: 80px;
+  text-align: center;
+  background-color: #bbeaff;
+  margin: 5px;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+
+/* Photodiodes, Curves, Error Bar buttons */
+.type-btn {
+  width: 155px;
+  height: 80px;
+  text-align: center;
+  background-color: #779ecb;
+  margin: 5px;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+
+/* 16, 32, 48, 64, 80 buttons */
+.PD-btn {
+  width: 70px;
+  height: 80px;
+  text-align: center;
+  background-color: #C0C0C0;
+  margin: 5px;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+/*
+.beamParam-btn {
+  width: 200px;
+  height: 80px;
+  text-align: left;
+  background-color: yellow;
+  margin: 5px;
+  font-size: 24px;
+  margin-bottom: -5px;
+}
+
+.beamParam {
+  border: 1px solid green ;
+}
+*/
+.beamParam {
+  background-color: #C1E1C1;
+  margin: 5px;
+  font-size: 24px;
+  width: 320px;
+  height: 80px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+
+.curve-type-btn {
+  width: 155px;
+  height: 60px;
+  text-align: center;
+  background-color: #779ecb;
+  margin-top: -60px;
+  font-size: 24px;
+  font-weight: 600;
+  border-color: black;
+  border-width: 5px;
+}
+
+
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+#secondRowBtns {
+  padding: 0px;
+  margin-bottom: -18px;
+}
+
+/*
+button.margin-right {
+  margin-right: 20px;
+}
+*/
+
+/*
+#pd-16 {
+  margin-left: 30px;
+}
+
+#pd-80 {
+  margin-right: 30px;
+}
+*/
+
+/*Highlighting plot type button currently selected with black border*/
+#btn-curve-clicked, #btn-photodiodes-clicked, #btn-errorbars-clicked {
+  width: 155px;
+  height: 80px;
+  text-align: center;
+  background-color: #bbeaff;
+  border-color: black;
+  border-width: 5px;
+  margin: 5px;
+  margin-bottom: -5px;
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+/*Highlighting photodiode button currently selected*/
+#pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus, #pd-80:focus {
+  width: 70px;
+  height: 80px;
+  text-align: center;
+  background-color: #bbeaff;
+  margin: 5px;
+  font-size: 24px;
+  margin-bottom: -5px;
+  border-color: black;
+  border-width: 5px;
+  margin-top: 20px;
+}
+
+/*
+#pd-16:focus {
+  margin-left: 50px;
+}
+
+#pd-80:focus {
+  margin-right: 50px;
+}
+*/
+
+
+/* ************************* RESPONSIVITY ****************************** */
+/* This section focuses on the rescaling of all HTML elements to ensure
+   they remain accessible at all browser and device widths               */
+
+
+/* COLLAPSE POINT 1: CHROME */
+
+@media screen and (max-width: 1615px) {
+  .type-btn, #btn-curve-clicked, #btn-photodiodes-clicked,
+  #btn-errorbars-clicked
+   {
+    margin: 5px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1615px) {
+  #pd-16, #pd-16:focus
+   {
+    margin-left: 5px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1615px) {
+  #pd-64, #pd-64:focus
+   {
+    margin-right: 5px;
+    margin-bottom: -5px;
+}
+
+/* COLLAPSE POINT 2: CHROME */
+
+@media screen and (max-width: 1525px) {
+  .type-btn, #btn-curve-clicked, #btn-photodiodes-clicked,
+  #btn-errorbars-clicked
+   {
+    width: 150px;
+    height: 100px;
+    margin: 5px;
+    font-size: 18px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1525px) {
+  .func-btn
+   {
+    margin: 5px;
+    font-size: 18px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1525px) {
+  .PD-btn, .PD-btn:focus
+   {
+    font-size: 18px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1525px) {
+  #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
+   {
+     font-size: 18px;
+}
+
+/* COLLAPSE POINT 3: CHROME */
+
+@media screen and (max-width: 1375px) {
+  .type-btn, #btn-curve-clicked, #btn-photodiodes-clicked,
+  #btn-errorbars-clicked
+   {
+    width: 130px;
+    height: 70px;
+    margin: 5px;
+    font-size: 18px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1375px) {
+  .func-btn
+   {
+    height: 70px;
+    margin: 5px;
+    font-size: 18px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1375px) {
+  .PD-btn
+   {
+    height: 70px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1375px) {
+  #btn-curve-clicked, #btn-photodiodes-clicked, #btn-errorbars-clicked
+   {
+     border-color: black;
+     border-width: 5px;
+     margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1375px) {
+  #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
+   {
+     font-size: 18px;
+     width: 110px;
+     height:70px;
+}
+
+/* COLLAPSE POINT 4: CHROME */
+
+@media screen and (max-width: 1320px) {
+  .type-btn, #btn-curve-clicked, #btn-photodiodes-clicked,
+  #btn-errorbars-clicked
+   {
+    width: 100px;
+    height: 50px;
+    margin: 3px;
+    font-size: 14px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1320px) {
+  .func-btn
+   {
+    height: 50px;
+    width: 80px;
+    margin: 3px;
+    font-size: 14px;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1320px) {
+  .PD-btn
+   {
+    height: 50px;
+    font-size: 14px;
+    margin: 3px;
+    text-align: center;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1320px) {
+  #btn-curve-clicked, #btn-photodiodes-clicked, #btn-errorbars-clicked
+   {
+     border-color: black;
+     border-width: 5px;
+     margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1320px) {
+  #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
+   {
+     height: 50px;
+     width: 110px;
+     font-size: 14px;
+     margin-bottom: -5px;
+}
+
+/* COLLAPSE POINT 5: CHROME */
+
+@media screen and (max-width: 1100px) {
+  .PD-btn
+   {
+    height: 50px;
+    width: 50px;
+    font-size: 14px;
+    margin: 3px;
+    text-align: center;
+    margin-bottom: -5px;
+}
+
+@media screen and (max-width: 1100px) {
+  #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
+   {
+     height: 50px;
+     width: 50px;
+     font-size: 14px;
+}
+
+/* COLLAPSE POINT 6: CHROME */
+
+@media screen and (max-width: 860px) {
+  .PD-btn
+   {
+    width: 30px;
+}
+
+@media screen and (max-width: 860px) {
+  .func-btn
+   {
+    width: 70px;
+}
+
+@media screen and (max-width: 860px) {
+  #pd-16:focus, #pd-32:focus, #pd-48:focus, #pd-64:focus
+   {
+     width: 30px;
+}
+
+
+/********************************************************************************/

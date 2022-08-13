@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+FERN PANNELL
+fern.pannell.17@ucl.ac.uk
+
+HTML base code required for the web display for the QuARC.
+Imports the required JavaScript libraries and links to the developed scripts.
+Defines user-control buttons with minimal CSS.
+Links to photodiode bars and photodiode bars with curve pages.
+-->
+<html lang="en">
+  <head>
+        	<meta charset="UTF-8" />
+          <!--<meta name="viewport" content="width=device-width", initial-->
+          <!--<meta http-equiv="X-UA-Compatible">-->
+          <!-- Importing the Chart.js charting library
+          <script
+          src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
+          </script>-->
+          <!-- OFFLINE IMPORT -->
+          <!--<script src="/chart.js/dist/Chart.min.js"></script>-->
+          <script src="Chart.min.js"></script>
+          <!-- linking the CSS for the display --->
+          <link rel="stylesheet" href="GUI.css" />
+          <!-- Load papaparse.js (parsing library for data) -->
+      		<script src="papaparse.min.js"></script>
+          <!-- plugin scripts required for error bar generation -->
+          <script src="chart.js/dist/Chart.bundle.js" type></script>
+          <script src="chartjs-plugin-error-bars/build/Plugin.Errorbars.js"></script>
+  </head>
+
+  <body>
+    <div class="flex-parent jc-center">
+    <!-- FUNCTION BUTTONS -->
+    <!-- Creating start button -->
+    <button id="parse-start" class="func-btn">Start</button>
+    <!-- Refresh the page when the start button is clicked -->
+    <button id="parse-stop" class="func-btn" onClick="window.location.reload();">Stop</button>
+    <!-- Button to enable client-side selection of the y-axis maximum -->
+    <button id="range" class="func-btn">Range</button>
+
+    <!-- PHOTODIODE BUTTONS -->
+    <!-- Buttons for client-side selection of photodiodes displayed on x-axis -->
+    <button id="pd-16" class="PD-btn">16</button>
+    <button id="pd-32" class="PD-btn">32</button>
+    <button id="pd-48" class="PD-btn">48</button>
+    <button id="pd-64" class="PD-btn">64</button>
+    <button id="pd-80" class="PD-btn">80</button>
+
+    <!-- PLOT TYPE BUTTONS -->
+    <!-- Link to the display without the curve when the Photodiodes button is clicked -->
+    <a href="index.html"><button class="type-btn">Photodiodes</button></a>
+    <!-- Link to the display with the curve when the Bortfeld button is clicked -->
+    <a href="GUI-FIT.html"><button class="type-btn">Curves</button></a>
+    <!-- Link to the display with error bars when the Error Bars button is clicked -->
+    <a href="#"><button class="type-btn" id="btn-errorbars-clicked">Error Bars</button></a>
+
+  </div>
+
+    <!-- Canvas to draw the graph on -->
+  <canvas id="myChart" width="50" height="20%"></canvas>
+    <!-- All the javascript for the display with error bars -->
+    <script src="GUI-EB.js"></script>
+
+  </body>
+
+</html>
