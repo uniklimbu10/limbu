@@ -185,8 +185,8 @@ var svg = d3.select('svg')
 
 // Scales
 var xScale = d3.scaleBand()
-	.domain(photodiodeLabels)
-	.range([0, width - (margins.left+margins.right) ]);
+	.domain(photodiodeLabels) // Depends on what photodiode number button was clicked
+	.range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin
 
 var yScale = d3.scaleLinear()
 	.domain([minY, maxY])
@@ -196,7 +196,7 @@ var yScale = d3.scaleLinear()
 svg.append('g')
    .attr('transform', 'translate('+ margins.top +','+ margins.left +')')
    .selectAll('rect')
-   .data(photodiodeData)
+   .data(photodiodeData) // Parsed data 
    .enter()
    .append('rect')
    .attr('x', function(d, i) {
@@ -206,16 +206,18 @@ svg.append('g')
       return yScale(d); // We need to pass in the data item
     })
     .attr('width', xScale.bandwidth()) // Automatically set the width
+	// Need to deduct the top and bottom margins from the total height so that whatever the value we get from yScale will not exceed that boundary
     .attr('height', function(d, i) { 
-        return height - (margins.top+margins.bottom) - yScale(d); })
+        return height - (margins.top+margins.bottom) - yScale(d); }) 
     .attr('fill', 'lightblue');
 
 // X axis
 svg.append('g')
   .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
   .call(d3.axisBottom(xScale))
+  //labels for the x axis
   .append("text")
-         .attr("y", 90 - margins.top)
+         .attr("y", 90 - margins.top) // intially was height - margins.top - value
          .attr("x", width-100)
          .attr("text-anchor", "end")
          .attr("stroke", "black")
@@ -227,6 +229,7 @@ svg.append('g')
 svg.append('g')
   .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
   .call(d3.axisLeft(yScale))
+  //labels for the y axis
   .append("text")
            .attr("transform", "rotate(-90)")
            .attr("y", 28)
