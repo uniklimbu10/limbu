@@ -159,7 +159,7 @@ window.onload=function(){
 
 function createGraph(data) {
 	//initialise empty y array for photodiode bars
-	var photodiodeData = [];
+	let photodiodeData = [];
 	//iterate over each element in csv row and put into photodiodeData array
 	//for (var i = 0; i < chart.data.datasets.data[0].length; i++) {
 	for (var i = 0; i < setPhotodiodes; i++) {
@@ -169,32 +169,79 @@ function createGraph(data) {
 	}
 
 	//debug - check values are parsed correctly
-	//console.log(photodiodeData);
-
+	console.log(photodiodeData);
+/*
 	//////////////////////////////////////////////////////////////////////////
 	//Create Graph with parsed photodiode data
 	//////////////////////////////////////////////////////////////////////////
-	//svg variable for the margin of the bar chart
-var svg = d3.select("svg"), 
-    margin = 200,  
-    svgWidth = svg.attr("width") - margin,
-    svgHeight = svg.attr("height") - margin
+	
+	var width = 800, height = 300;
+var margins = {top: 50, right: 50, bottom: 50, left: 50}; // Sets the margin
+
+// Create the SVG canvas
+var svg = d3.select('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+// Scales
+var xScale = d3.scaleBand()
+	.domain(photodiodeLabels)
+	.range([0, width - (margins.left+margins.right) ]);
+
+var yScale = d3.scaleLinear()
+	.domain([minY, maxY])
+    .range([height - (margins.top+margins.bottom), 0]);
+
+// Margins around SVG canvas
+svg.append('g')
+  .attr('transform', 'translate('+ margins.top +','+ margins.left +')')
+  .selectAll('rect')
+  .data(photodiodeData)
+  .enter()
+  .append('rect')
+    .attr('x', function(d, i) {
+      return xScale(i+1); // We only need the index. i.e. Ordinal and also need to add +1 for the bar chart to work
+    })
+    .attr('y', function(d, i) {
+      return yScale(d); // We need to pass in the data item
+    })
+    .attr('width', xScale.bandwidth()) // Automatically set the width
+    .attr('height', function(d, i) { 
+        return height - (margins.top+margins.bottom) - yScale(d); })
+    .attr('fill', 'lightblue');
+
+// X axis
+svg.append('g')
+  .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
+  .call(d3.axisBottom(xScale))
+  .append("text")
+         .attr("y", height- margins.top-220)
+         .attr("x", width-100)
+         .attr("text-anchor", "end")
+         .attr("stroke", "black")
+         .text("x-axis")
+
+// Y axis
+svg.append('g')
+  .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
+  .call(d3.axisLeft(yScale))
+  .append("text")
+           .attr("transform", "rotate(-90)")
+           .attr("y", 18)
+           .attr("dy", "-5.1em")
+           .attr("text-anchor", "end")
+           .attr("stroke", "black")
+           .text("y-axis");
 
 //creates the title on the svg            
 svg.append("text") 
-   .attr("transform", "translate(100,0)") //translates the text
-   .attr("x", 200) 
-   .attr("y", 50)
-   .attr("stroke", "black")
-   .attr("font-size", "32px")
-   .text("Quality Assurance Range Calorimeter (QuARC) GUI")
+       .attr("transform", "translate(100,0)") //translates the text
+       .attr("x", 200) 
+       .attr("y", 50)
+       .attr("stroke", "black")
+       .attr("font-size", "32px")
+       .text("TITLE") */
 
-//variables that are used for scaling the x and y data values into visual valyes such as positions on the graph
-//var xScale = d3.scaleBand().range([0, svgWidth]).padding(0.4), //scaleBand() are useful for charts with a categorial dimension
-  //  yScale = d3.scaleLinear().range([svgHeight, 0]); //scaleLinear() constructs a scale with linear realtionship between input and output
-
-var minY = 0;
-let maxY = 600; //default - typical max charge
   
 };
 
