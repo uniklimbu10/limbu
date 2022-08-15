@@ -12,10 +12,10 @@ Links to photodiode bars with curve and error bar pages.
         	<meta charset="UTF-8" />
           <!--<meta name="viewport" content="width=device-width", initial-->
           <!--<meta http-equiv="X-UA-Compatible">-->
-          <!-- Accessing D3 library from CDN 
-          <script src="https://d3js.org/d3.v7.min.js"></script> -->
+          <!-- Accessing D3 library from CDN -->
+          <script src="https://d3js.org/d3.v4.min.js"></script> 
           <!-- Accesing D3 library by downloading the source code version 7.6.1 (11/07/22)-->
-          <script src="d3.min.js"></script>
+          <!-- <script src="d3.min.js"></script> -->
           <!-- linking the CSS for the display -->
           <link rel="stylesheet" href="GUI.css" />
           <!-- Load papaparse.js (parsing library for data) -->
@@ -50,20 +50,18 @@ Links to photodiode bars with curve and error bar pages.
     <a href="GUI-EB.html"><button class="type-btn">Error Bars</button></a>
 
   </div>
-
+  
   <style>
     rect {
       stroke: black;
       stroke-width: 0.5px;
     }
   </style>
+
   <svg></svg>
 
-    <!-- Canvas to draw the graph on -->
-    <canvas id="myChart" width="50" height="20%"></canvas>
-    <!-- <svg svgWidth="1350" svgHeight="500"></svg> -->
-    <!-- All the javascript for the display with bars only -->
-    <script src="GUI-PD.js"></script>
+  <!-- All the javascript for the display with bars only -->
+  <script src="GUI-PD.js"></script>
 
   </body>
 

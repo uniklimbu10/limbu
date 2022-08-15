@@ -8,7 +8,7 @@ var dataFile = "photodiodeValues.csv";
 //milliseconds - update interval
 var interval = 50; //Hz display
 //assigning html canvas to a JS variable
-var ctx = document.getElementById('myChart').getContext('2d');
+//var ctx = document.getElementById('myChart').getContext('2d');
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //various photodiode numnbers 16,32,48,64
@@ -120,8 +120,6 @@ if (setPhotodiodes === 16){
 //create empty chart skeleton to show on GUI before any user action
 //////////////////////////////////////////////////////////////////////////////
 
-//end of empty chart generation
-
 ////////////////////////////////////////////////////////////////////////////
 //Parsing CSV values - photodiode data
 ////////////////////////////////////////////////////////////////////////////
@@ -142,16 +140,9 @@ window.onload=function(){
 						//console.log(results.data[0]);
 						//will be carried into createGraph()
 						createGraph(results.data);
-						/*
-						let beamEnergy = results.data[0][0];
-						let beamRange = results.data[0][1];
-						document.getElementById("beam-energy").innerHTML = "Beam Energy: "+beamEnergy;
-						document.getElementById("beam-range").innerHTML = "Beam Range: "+beamRange;
-						*/
 					}
 				});
 			}
-
 			//update the graph at a set interval
 			setInterval(() => {parseData(createGraph);},interval);
 
@@ -159,7 +150,7 @@ window.onload=function(){
 
 function createGraph(data) {
 	//initialise empty y array for photodiode bars
-	let photodiodeData = [];
+	var photodiodeData = [];
 	//iterate over each element in csv row and put into photodiodeData array
 	//for (var i = 0; i < chart.data.datasets.data[0].length; i++) {
 	for (var i = 0; i < setPhotodiodes; i++) {
@@ -174,9 +165,9 @@ function createGraph(data) {
 	//////////////////////////////////////////////////////////////////////////
 	//Create Graph with parsed photodiode data
 	//////////////////////////////////////////////////////////////////////////
-	
-var width = 1300, height = 500;
-var margins = {top: 50, right: 50, bottom: 50, left: 50}; // Sets the margin
+
+var width = 1350, height = 550;
+var margins = {top: 100, right: 100, bottom: 100, left: 100}; // Sets the margin
 
 // Create the SVG canvas
 var svg = d3.select('svg')
@@ -186,7 +177,7 @@ var svg = d3.select('svg')
 // Scales
 var xScale = d3.scaleBand()
 	.domain(photodiodeLabels) // Depends on what photodiode number button was clicked
-	.range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin
+	.range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin	
 
 var yScale = d3.scaleLinear()
 	.domain([minY, maxY])
@@ -203,12 +194,12 @@ svg.append('g')
       return xScale(i+1); // We only need the index. i.e. Ordinal and also need to add +1 for the bar chart to work
     })
    .attr('y', function(d, i) {
-      return yScale(d); // We need to pass in the data item
+      return yScale(d,i); // We need to pass in the data item
     })
     .attr('width', xScale.bandwidth()) // Automatically set the width
 	// Need to deduct the top and bottom margins from the total height so that whatever the value we get from yScale will not exceed that boundary
     .attr('height', function(d, i) { 
-        return height - (margins.top+margins.bottom) - yScale(d); }) 
+        return height - (margins.top+margins.bottom) - yScale(d,i); }) 
     .attr('fill', 'lightblue');
 
 // X axis
@@ -217,8 +208,9 @@ svg.append('g')
   .call(d3.axisBottom(xScale))
   //labels for the x axis
   .append("text")
-         .attr("y", 90 - margins.top) // intially was height - margins.top - value
-         .attr("x", width-100)
+  // intially was height - margins.top - value and also bigger the value will shift it downwards
+         .attr("y", 140 - margins.top)
+         .attr("x", width-200)
          .attr("text-anchor", "end")
          .attr("stroke", "black")
          .text("x-axis")
@@ -232,7 +224,7 @@ svg.append('g')
   //labels for the y axis
   .append("text")
            .attr("transform", "rotate(-90)")
-           .attr("y", 28)
+           .attr("y", 20) //increasing this value shifts it to right
            .attr("dy", "-5.1em")
            .attr("text-anchor", "end")
            .attr("stroke", "black")
@@ -243,15 +235,12 @@ svg.append('g')
 svg.append("text") 
        .attr("transform", "translate(100,0)") //translates the text
        .attr("x", 200) 
-       .attr("y", 40)
+       .attr("y", 35) //bigger will shift it down
        .attr("stroke", "black")
-       .attr("font-size", "32px")
-       .text("Quality Assurance Range Calorimeter (QuArc) GUI");
-
-
-	   
+       .attr("font-size", "30px")
+       .text("Quality Assurance Range Calorimeter (QuArc) GUI");    
   
 };
 
-}
+} 
 
