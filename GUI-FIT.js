@@ -1,20 +1,14 @@
-/*
-@author: Fern Pannell
-@email: fern.pannell.17@ucl.ac.uk
-@purpose: Web display for the QuARC, photodiode bars AND curve data
-@version: BD-1.5
-*/
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //globals
-Chart.defaults.global.animation.duration = 0;
-Chart.defaults.global.defaultFontSize = 20;
+//Chart.defaults.global.animation.duration = 0;
+//Chart.defaults.global.defaultFontSize = 20;
 //data should be written to this file, displaying this data for GUI
 var dataFile = "photodiodeValues.csv";
 //milliseconds - update interval
 var interval = 50; //Hz display
 //assigning html canvas to a JS variable
-var ctx = document.getElementById('myChart').getContext('2d');
+//var ctx = document.getElementById('myChart').getContext('2d');
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //various photodiode numnbers 16,32,48,64
@@ -124,80 +118,7 @@ if (setPhotodiodes === 16){
 			//////////////////////////////////////////////////////////////////////////////
 			//create empty chart skeleton to show on GUI before any user action
 			//////////////////////////////////////////////////////////////////////////////
-var chart = new Chart(ctx, {
-	// The type of chart we want to create
-	type: 'bar',
-	// The data for our dataset
-	data: {
-		labels: photodiodeLabels,
-			datasets: [{
-				label: 'Photodiode Intensities',
-				order: 2, //drawing 2nd (want the curve on top of the bars)
-				backgroundColor: 'rgb(0,0,0,0.4)', //light grey
-				data: initialData
-			},
-			{
-				//curve details
-				type: 'line',
-				order: 1, //drawing 1st
-				label: 'Bortfeld Curve',
-				data: initialData,
-				fill: false, //don't want to fill space under the line
-				borderColor: "#005EB8", //NHS blue
-				borderWidth: 4,
-			  backgroundColor: "#005EB8", //NHS blue
-				}
-			]
-	},
-	options: {
-		//perfomance improvement
-		tooltips: {enabled: false},
-		hover: {mode: null},
-		layout: {
-        padding: {
-            left: 20,
-            right: 20,
-            top: 40,
-            bottom: 0
-        }
-    },
-		elements: {
-			point: {
-				radius: 0 //remove points on line
-			}
-		},
-		title: {
-			display: true,
-			text: 'Quality Assurance Range Calorimeter GUI',
-			fontColor: 'black',
-			fontSize: 40
-		},
-		legend: {
-			display: true,
-		},
-		scales: {
-			xAxes: [{
-				display: true,
-				scaleLabel: {
-					display: true,
-					labelString: 'Photodiode Number'
-				}
-			}],
-			yAxes: [{
-				display: true,
-				scaleLabel: {
-					display: true,
-					labelString: "Charge / pC",
-				},
-				ticks: {
-					beginAtZero: true,
-					min: minY,
-					max: maxY
-				}
-			}]
-		}
-	}
-	});
+
 //end of empty chart generation
 
 ////////////////////////////////////////////////////////////////////////////
@@ -269,100 +190,62 @@ function createGraph(data) {
 	//////////////////////////////////////////////////////////////////////////
 	//Create Graph with parsed photodiode data
 	//////////////////////////////////////////////////////////////////////////
-  var chart = new Chart(ctx, {
-  // The type of chart we want to create
-  type: 'bar',
-  // The data for our dataset
-  data: {
-      labels: photodiodeLabels,
-      datasets: [{
-          label: 'Photodiode Intensities',
-					order: 2, //drawing 2nd (want the curve on top of the bars)
-          backgroundColor: 'rgb(0,0,0,0.4)', //light grey
-          data: photodiodeData
-      }, {
-					type: 'line',
-					order: 1, //drawing 1st
-					label: 'Bortfeld Curve',
-					data: curveData,
-					fill: false, //don't want to fill space under the line
-					//assign separate x-axis for curve data to keep within the bar space
-					xAxisID: 'x-axis-2',
-					borderColor: "#005EB8", //NHS blue
-					borderWidth: 4,
-				  backgroundColor: "#005EB8", //NHS blue
-			}]
-  },
-  // Configuration for the graph
-  options: {
-		//perfomance improvement
-		tooltips: {enabled: false},
-    hover: {mode: null},
-		layout: {
-	      padding: {
-	          left: 20,
-	          right: 20,
-	          top: 40,
-	          bottom: 0
-	      }
-	  },
-		elements: {
-			point: {
-				radius: 0 //remove points on line
-			}
-		},
-    title: {
-      display: true,
-      text: 'Quality Assurance Range Calorimeter GUI',
-			fontColor: 'black',
-			fontSize: 40
-    },
-    legend: {
-      display: true,
-    },
-    scales: {
-      xAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          //labelString: 'Photodiode Number'
-        }
-      }
-			,
-			{
-				//configuration options for the curve hidden x-axis
-				id: 'x-axis-2',
-				type: 'linear',
-				position: 'bottom',
-				display: true, //we don't want to see it
-				//labelString: '"WET"',
-				scaleLabel: {
-          display: true,
-          labelString: '"WET"'
-        }, //we don't want to see it
-				ticks: {
-					min: 0,
-          max: setPhotodiodes*10,
-          stepSize: 160 // 1 - 2 - 3 ...
-				}
-			}
-		],
-      yAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: "Charge / pC",
-        },
-				ticks: {
-					display: true,
-					beginAtZero: true,
-					min: minY,
-					max: maxY
-				}
-      }]
-    }
-  }
-  });
+	var width = 1350, height = 550;
+	var margins = {top: 100, right: 100, bottom: 100, left: 100}; // Sets the margin
+	
+	// Create the SVG canvas
+	var svg = d3.select('svg')
+				.attr('width', width)
+				.attr('height', height);
+	
+	// Scales
+	var xScale = d3.scaleBand()
+		.domain(photodiodeLabels) // Depends on what photodiode number button was clicked
+		.range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin	
+	
+	var yScale = d3.scaleLinear()
+		.domain([minY, maxY])
+		.range([height - (margins.top+margins.bottom), 0]);
+	
+	// Line chart
+	
+	// X axis
+	svg.append('g')
+	  .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
+	  .call(d3.axisBottom(xScale))
+	  //labels for the x axis
+	  .append("text")
+	  // intially was height - margins.top - value and also bigger the value will shift it downwards
+			 .attr("y", 140 - margins.top)
+			 .attr("x", width-200)
+			 .attr("text-anchor", "end")
+			 .attr("stroke", "black")
+			 .text("x-axis")
+			 .attr("font-size", "12px")
+			 .text("Photodiode Number");
+	
+	// Y axis
+	svg.append('g')
+	  .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
+	  .call(d3.axisLeft(yScale))
+	  //labels for the y axis
+	  .append("text")
+			   .attr("transform", "rotate(-90)")
+			   .attr("y", 20) //increasing this value shifts it to right
+			   .attr("dy", "-5.1em")
+			   .attr("text-anchor", "end")
+			   .attr("stroke", "black")
+			   .attr("font-size", "12px")
+			   .text("Charge / pC");
+	
+	//creates the title on the svg            
+	svg.append("text") 
+		   .attr("transform", "translate(100,0)") //translates the text
+		   .attr("x", 200) 
+		   .attr("y", 35) //bigger will shift it down
+		   .attr("stroke", "black")
+		   .attr("font-size", "30px")
+		   .text("Quality Assurance Range Calorimeter (QuArc) GUI"); 
 };
 
 }

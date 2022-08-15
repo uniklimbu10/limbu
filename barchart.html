@@ -28,9 +28,12 @@ photodiodeLabels_80 = ['1','2','3','4','5','6','7','8','9','10','11','12',
 var minY = 0;
 let maxY = 700; // Default charge /pC
 // First 16 data of the photodiode intensity
-var data = [643,530,369,254,342,214,311,127,342,428,187,574,356,609,346,686]; 
+var data = [0];
 // All 80 datas
 //var data = [643,530,369,254,342,214,311,127,342,428,187,574,356,609,346,686,627,406,17,593,673,533,467,286,83,502,452,183,169,510,625,62,311,252,513,564,272,416,572,656,108,670,39,150,500,590,428,332,35,522,685,675,684,528,373,542,584,495,673,497,194,420,311,116,412,326,324,411,5,496,516,23,610,18,555,627,362,296,237,210]; 
+// Checking data
+//console.log(data); 
+
 var width = 1300, height = 500;
 var margins = {top: 50, right: 50, bottom: 50, left: 50}; // Sets the margin
 
@@ -61,13 +64,13 @@ svg.append('g')
   })
    // We need to pass in the data item
    .attr('y', function(d, i) {
-    return yScale(d); 
+    return yScale(d,i); 
   })
    // Automatically set the width
    .attr('width', xScale.bandwidth()) 
    // Need to deduct the top and bottom margins from the total height so that whatever the value we get from yScale will not exceed that boundary
    .attr('height', function(d, i) { 
-    return height - (margins.top+margins.bottom) - yScale(d); })
+    return height - (margins.top+margins.bottom) - yScale(d,i); })
    .attr('fill', 'lightblue');
 
 // X axis

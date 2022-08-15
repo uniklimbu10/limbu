@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <!--
-FERN PANNELL
-fern.pannell.17@ucl.ac.uk
+UNIK LIMBU
 
 HTML base code required for the web display for the QuARC.
 Imports the required JavaScript libraries and links to the developed scripts.
 Defines user-control buttons with minimal CSS.
-Links to photodiode bars and error bar pages.
+Links to photodiode bars with curve and error bar pages.
 -->
 <html lang="en">
   <head>
-        	<meta charset="UTF-8" />
-          <!--<meta name="viewport" content="width=device-width", initial-->
-          <!--<meta http-equiv="X-UA-Compatible">-->
-          <!-- Importing the Chart.js charting library
-          <script
-          src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
-          </script>-->
-          <!-- OFFLINE IMPORT -->
-          <!--<script src="/chart.js/dist/Chart.min.js"></script>-->
-          <script src="Chart.min.js"></script>
-          <!-- linking the CSS for the display --->
-          <link rel="stylesheet" href="GUI.css" />
-          <!-- Load papaparse.js (parsing library for data)-->
-      		<script src="papaparse.min.js"></script>
+    <meta charset="UTF-8" />
+    <!--<meta name="viewport" content="width=device-width", initial-->
+    <!--<meta http-equiv="X-UA-Compatible">-->
+    <!-- Accessing D3 library from CDN -->
+    <script src="https://d3js.org/d3.v4.min.js"></script> 
+    <!-- Accesing D3 library by downloading the source code version 7.6.1 (11/07/22)-->
+    <!-- <script src="d3.min.js"></script> -->
+    <!-- linking the CSS for the display -->
+    <link rel="stylesheet" href="GUI.css" />
+    <!-- Load papaparse.js (parsing library for data) -->
+    <script src="papaparse.min.js"></script>
   </head>
 
   <body>
@@ -74,11 +70,10 @@ Links to photodiode bars and error bar pages.
       <button id="bortfeldCurve" class="curve-type-btn">Bortfeld</button>
       <button id="quenchedCurve" class="curve-type-btn">Quenched</button>
     </div>
-
-
+    <svg></svg>
 
     <!-- Canvas to draw the graph on -->
-    <canvas id="myChart" width="50" height="20%"></canvas>
+    <!-- <canvas id="myChart" width="50" height="20%"></canvas> -->
     <!-- All the javascript for the display with bars AND curve -->
     <script src="GUI-FIT.js"></script>
 
