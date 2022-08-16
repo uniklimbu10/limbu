@@ -12,9 +12,9 @@ var interval = 50; //Hz display
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 //various photodiode numnbers 16,32,48,64
-var setPhotodiodes = 80; //default
+//var setPhotodiodes = 80; //default
 var photodiodeLabels;
-var initialData;
+//var initialData;
 var minY = 0;
 let maxY = 600; //default - typical max charge
 
@@ -42,7 +42,7 @@ photodiodeLabels_80 = ['1','2','3','4','5','6','7','8','9','10','11','12',
 '41','42','43','44','45','46','47','48','49','50','51','52','53','54',
 '55','56','57','58','59','60','61','62','63','64','65','66','67',
 '68','69','70','71','72','73','74','75','76','77','78','79','80'];
-
+/*
 //graph set up depending on number of photodiodes
 if (setPhotodiodes === 16){
 		photodiodeLabels = photodiodeLabels_16
@@ -69,10 +69,6 @@ if (setPhotodiodes === 16){
 		var initialData = new Array(80).fill(0);
 	}
 
-	//////// Client side functionality ////////
-
-	//Rescaling the x-axis based on a user selection of photodiode number
-	//via button click action
 
 	let btn_16=document.getElementById("pd-16").
 	addEventListener('click', ()=> {
@@ -102,7 +98,7 @@ if (setPhotodiodes === 16){
 	addEventListener('click', ()=> {
 		setPhotodiodes = 80;
 		photodiodeLabels = photodiodeLabels_80;
-	});
+	}); */
 
 	//////// Client side functionality ////////
 
@@ -113,6 +109,31 @@ if (setPhotodiodes === 16){
 	addEventListener('click', ()=> {
 		var range = window.prompt("Set upper value for y axis: ");
 		maxY = parseInt(range, 10);
+
+	});
+
+	//Rescaling the x-axis based on a user INPUT of photodiode numbers
+
+	let btn_pd=document.getElementById("pd").
+	addEventListener('click', ()=> {
+		var pd = window.prompt("Set value for photodiode number: ");
+		setPhotodiodes = parseInt(pd);
+		if (setPhotodiodes == 16) {
+			photodiodeLabels = photodiodeLabels_16
+		}
+		else if (setPhotodiodes === 32){
+			photodiodeLabels = photodiodeLabels_32
+	}
+		else if (setPhotodiodes === 48){
+			photodiodeLabels = photodiodeLabels_48
+	}
+		else if (setPhotodiodes === 64){
+			photodiodeLabels = photodiodeLabels_64
+	}
+	else {
+		photodiodeLabels = photodiodeLabels_80
+	}
+
 
 	});
 
@@ -233,6 +254,7 @@ function createGraph(data) {
 
 	//debug - check values are parsed correctly
 	//console.log(photodiodeData);
+	//console.log(setPhotodiodes);
 
 	//////////////////////////////////////////////////////////////////////////
 	//Create Graph with parsed photodiode data
@@ -312,7 +334,7 @@ svg.append("text")
        .attr("font-size", "30px")
        .text("Quality Assurance Range Calorimeter (QuArc) GUI");    
   
-};
+}; 
 
 // This removes all the svg elements e.g. bar chart, axes, title, etc
 //d3.select("svg").remove();

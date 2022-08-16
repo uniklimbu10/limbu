@@ -11,7 +11,7 @@ button {
 */
 /* Start, Stop, Range buttons */
 .func-btn {
-  width: 100px;
+  width: 120px; /* changed from 100px to 120px */
   height: 80px;
   text-align: center;
   background-color: #bbeaff;
@@ -33,7 +33,7 @@ button {
   margin-bottom: 70px;
 }
 
-/* 16, 32, 48, 64, 80 buttons */
+/* 16, 32, 48, 64, 80 buttons 
 .PD-btn {
   width: 70px;
   height: 80px;
@@ -44,7 +44,7 @@ button {
   margin-top: 20px;
   margin-bottom: 70px;
 }
-/*
+
 .beamParam-btn {
   width: 200px;
   height: 80px;
