@@ -13,92 +13,10 @@ var interval = 50; //Hz display
 //////////////////////////////////////////////////////////////////////////////
 //various photodiode numnbers 16,32,48,64
 //var setPhotodiodes = 80; //default
-var photodiodeLabels;
+//var photodiodeLabels;
 //var initialData;
 var minY = 0;
 let maxY = 600; //default - typical max charge
-
-photodiodeLabels_16 = ['1','2','3','4','5','6','7','8','9','10','11','12',
-'13','14','15','16'];
-
-photodiodeLabels_32 = ['1','2','3','4','5','6','7','8','9','10','11','12',
-'13','14','15','16','17','18','19','20','21','22','23','24','25','26',
-'27','28','29','30','31','32'];
-
-photodiodeLabels_48 = ['1','2','3','4','5','6','7','8','9','10','11','12',
-'13','14','15','16','17','18','19','20','21','22','23','24','25','26',
-'27','28','29','30','31','32','33','34','35','36','37','38','39','40',
-'41','42','43','44','45','46','47','48'];
-
-photodiodeLabels_64 = ['1','2','3','4','5','6','7','8','9','10','11','12',
-'13','14','15','16','17','18','19','20','21','22','23','24','25','26',
-'27','28','29','30','31','32','33','34','35','36','37','38','39','40',
-'41','42','43','44','45','46','47','48','49','50','51','52','53','54',
-'55','56','57','58','59','60','61','62','63','64'];
-
-photodiodeLabels_80 = ['1','2','3','4','5','6','7','8','9','10','11','12',
-'13','14','15','16','17','18','19','20','21','22','23','24','25','26',
-'27','28','29','30','31','32','33','34','35','36','37','38','39','40',
-'41','42','43','44','45','46','47','48','49','50','51','52','53','54',
-'55','56','57','58','59','60','61','62','63','64','65','66','67',
-'68','69','70','71','72','73','74','75','76','77','78','79','80'];
-/*
-//graph set up depending on number of photodiodes
-if (setPhotodiodes === 16){
-		photodiodeLabels = photodiodeLabels_16
-		var initialData = new Array(16).fill(0);
-}
-	else if (setPhotodiodes === 32){
-		photodiodeLabels = photodiodeLabels_32
-		var initialData = new Array(32).fill(0);
-}
-	else if (setPhotodiodes === 48){
-		photodiodeLabels = photodiodeLabels_48
-		var initialData = new Array(48).fill(0);
-}
-	else if (setPhotodiodes === 64){
-		photodiodeLabels = photodiodeLabels_64
-		var initialData = new Array(64).fill(0);
-}
-	else if (setPhotodiodes === 80){
-		photodiodeLabels = photodiodeLabels_80
-		var initialData = new Array(80).fill(0);
-}
-	else {
-		photodiodeLabels = photodiodeLabels_64
-		var initialData = new Array(80).fill(0);
-	}
-
-
-	let btn_16=document.getElementById("pd-16").
-	addEventListener('click', ()=> {
-		setPhotodiodes = 16;
-		photodiodeLabels = photodiodeLabels_16;
-	});
-
-	let btn_32=document.getElementById("pd-32").
-	addEventListener('click', ()=> {
-		setPhotodiodes = 32;
-		photodiodeLabels = photodiodeLabels_32;
-	});
-
-	let btn_48=document.getElementById("pd-48").
-	addEventListener('click', ()=> {
-		setPhotodiodes = 48;
-		photodiodeLabels = photodiodeLabels_48;
-	});
-
-	let btn_64=document.getElementById("pd-64").
-	addEventListener('click', ()=> {
-		setPhotodiodes = 64;
-		photodiodeLabels = photodiodeLabels_64;
-	});
-
-	let btn_80=document.getElementById("pd-80").
-	addEventListener('click', ()=> {
-		setPhotodiodes = 80;
-		photodiodeLabels = photodiodeLabels_80;
-	}); */
 
 	//////// Client side functionality ////////
 
@@ -118,22 +36,9 @@ if (setPhotodiodes === 16){
 	addEventListener('click', ()=> {
 		var pd = window.prompt("Set value for photodiode number: ");
 		setPhotodiodes = parseInt(pd);
-		if (setPhotodiodes == 16) {
-			photodiodeLabels = photodiodeLabels_16
-		}
-		else if (setPhotodiodes === 32){
-			photodiodeLabels = photodiodeLabels_32
-	}
-		else if (setPhotodiodes === 48){
-			photodiodeLabels = photodiodeLabels_48
-	}
-		else if (setPhotodiodes === 64){
-			photodiodeLabels = photodiodeLabels_64
-	}
-	else {
-		photodiodeLabels = photodiodeLabels_80
-	}
-
+		// Generates an array for the photodiode numbers depending on what the user inputted
+		xPD = Array.from({ length: setPhotodiodes}, (_,i) => i+1); 
+		//console.log(xPD); 
 
 	});
 
@@ -254,7 +159,6 @@ function createGraph(data) {
 
 	//debug - check values are parsed correctly
 	//console.log(photodiodeData);
-	//console.log(setPhotodiodes);
 
 	//////////////////////////////////////////////////////////////////////////
 	//Create Graph with parsed photodiode data
@@ -270,7 +174,7 @@ var svg = d3.select('svg')
 
 // Scales
 var xScale = d3.scaleBand()
-	.domain(photodiodeLabels) // Depends on what photodiode number button was clicked
+	.domain(xPD) // Depends on what photodiode number button was clicked
 	.range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin	
 
 var yScale = d3.scaleLinear()
@@ -337,7 +241,7 @@ svg.append("text")
 }; 
 
 // This removes all the svg elements e.g. bar chart, axes, title, etc
-//d3.select("svg").remove();
+//d3.select("svg").remove(); 
 
 } 
 
