@@ -212,7 +212,7 @@ svg.append('g')
          .attr("text-anchor", "end")
          .attr("stroke", "black")
          .text("x-axis")
-		 .attr("font-size", "12px")
+		     .attr("font-size", "16px")
          .text("Photodiode Number");
 
 // Y axis
@@ -225,18 +225,18 @@ svg.append('g')
            .attr("y", 20) //increasing this value shifts it to right
            .attr("dy", "-5.1em")
            .attr("text-anchor", "end")
-           .attr("stroke", "black")
-           .attr("font-size", "12px")
+           .style("stroke", "black")
+           .style("stroke-width", 1)
+           .attr("font-size", "16px")
            .text("Charge / pC");
 
 //creates the title on the svg            
 svg.append("text") 
        .attr("transform", "translate(100,0)") //translates the text
-       .attr("x", 200) 
-       .attr("y", 35) //bigger will shift it down
-       .attr("stroke", "black")
-       .attr("font-size", "30px")
-       .text("Quality Assurance Range Calorimeter (QuArc) GUI");    
+       .attr("x", 300) 
+       .attr("y", 38) //bigger will shift it down
+       .attr("font-size", "32px")
+       .text("Quality Assurance Range Calorimeter GUI");    
   
 }; 
 
