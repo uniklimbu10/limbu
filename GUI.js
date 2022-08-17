@@ -1,22 +1,19 @@
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-//globals
-//Chart.defaults.global.animation.duration = 0;
-//Chart.defaults.global.defaultFontSize = 20;
+/*
+@author: Unik Limbu
+@email: uniklimbu81@gmail.com
+@purpose: Web display for the QuARC. This javascript file contains code for the buttons/text-entry boxes
+and the graphs which uses the D3.js library
+@reference: Original developed by Fern Pannell using Chart.js 
+*/
+
 //data should be written to this file, displaying this data for GUI
 var dataFile = "photodiodeValues.csv";
 //milliseconds - update interval
 var interval = 50; //Hz display
-//assigning html canvas to a JS variable
-//var ctx = document.getElementById('myChart').getContext('2d');
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-//various photodiode numnbers 16,32,48,64
-//var setPhotodiodes = 80; //default
-//var photodiodeLabels;
-//var initialData;
+
+//variable for the y-axis which corresponds to the photodiode intensities
 var minY = 0;
-let maxY = 600; //default - typical max charge
+let maxY = 600; //default - typical max charge in pC
 
 	//////// Client side functionality ////////
 
@@ -42,83 +39,6 @@ let maxY = 600; //default - typical max charge
 
 	});
 
-//////////////////////////////////////////////////////////////////////////////
-//create empty chart skeleton to show on GUI before any user action
-//////////////////////////////////////////////////////////////////////////////
-/* var width = 1350, height = 550;
-var margins = {top: 100, right: 100, bottom: 100, left: 100}; // Sets the margin
-
-// Create the SVG canvas
-var svg = d3.select('svg')
-            .attr('width', width)
-            .attr('height', height);
-
-// Scales
-var xScale = d3.scaleBand()
-	.domain(photodiodeLabels) // Depends on what photodiode number button was clicked
-	.range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin	
-
-var yScale = d3.scaleLinear()
-	.domain([minY, maxY])
-    .range([height - (margins.top+margins.bottom), 0]);
-
-// Margins around SVG canvas
-svg.append('g')
-   .attr('transform', 'translate('+ margins.top +','+ margins.left +')')
-   .selectAll('rect')
-   .data([0]) // Initial data
-   .enter()
-   .append('rect')
-   .attr('x', function(d, i) {
-      return xScale(i+1); // We only need the index. i.e. Ordinal and also need to add +1 for the bar chart to work
-    })
-   .attr('y', function(d, i) {
-      return yScale(d,i); // We need to pass in the data item
-    })
-    .attr('width', xScale.bandwidth()) // Automatically set the width
-	// Need to deduct the top and bottom margins from the total height so that whatever the value we get from yScale will not exceed that boundary
-    .attr('height', function(d, i) { 
-        return height - (margins.top+margins.bottom) - yScale(d,i); }) 
-    .attr('fill', 'lightblue');
-
-// X axis
-svg.append('g')
-  .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
-  .call(d3.axisBottom(xScale))
-  //labels for the x axis
-  .append("text")
-  // intially was height - margins.top - value and also bigger the value will shift it downwards
-         .attr("y", 140 - margins.top)
-         .attr("x", width-200)
-         .attr("text-anchor", "end")
-         .attr("stroke", "black")
-         .text("x-axis")
-		 .attr("font-size", "12px")
-         .text("Photodiode Number");
-
-// Y axis
-svg.append('g')
-  .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
-  .call(d3.axisLeft(yScale))
-  //labels for the y axis
-  .append("text")
-           .attr("transform", "rotate(-90)")
-           .attr("y", 20) //increasing this value shifts it to right
-           .attr("dy", "-5.1em")
-           .attr("text-anchor", "end")
-           .attr("stroke", "black")
-           .attr("font-size", "12px")
-           .text("Charge / pC");
-
-//creates the title on the svg            
-svg.append("text") 
-       .attr("transform", "translate(100,0)") //translates the text
-       .attr("x", 200) 
-       .attr("y", 35) //bigger will shift it down
-       .attr("stroke", "black")
-       .attr("font-size", "30px")
-       .text("Quality Assurance Range Calorimeter (QuArc) GUI"); */
-////////////////////////////////////////////////////////////////////////////
 //Parsing CSV values - photodiode data
 ////////////////////////////////////////////////////////////////////////////
 window.onload=function(){
@@ -160,9 +80,9 @@ function createGraph(data) {
 	//debug - check values are parsed correctly
 	//console.log(photodiodeData);
 
-	//////////////////////////////////////////////////////////////////////////
-	//Create Graph with parsed photodiode data
-	//////////////////////////////////////////////////////////////////////////
+	
+//Create Graph with parsed photodiode data
+//////////////////////////////////////////////////////////////////////////
 
 var width = 1350, height = 550;
 var margins = {top: 100, right: 100, bottom: 100, left: 100}; // Sets the margin
@@ -212,7 +132,7 @@ svg.append('g')
          .attr("text-anchor", "end")
          .attr("stroke", "black")
          .text("x-axis")
-		     .attr("font-size", "16px")
+		     .attr("font-size", "14px")
          .text("Photodiode Number");
 
 // Y axis
@@ -227,7 +147,7 @@ svg.append('g')
            .attr("text-anchor", "end")
            .style("stroke", "black")
            .style("stroke-width", 1)
-           .attr("font-size", "16px")
+           .attr("font-size", "14px")
            .text("Charge / pC");
 
 //creates the title on the svg            

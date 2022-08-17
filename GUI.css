@@ -33,32 +33,6 @@ button {
   margin-bottom: 70px;
 }
 
-/* 16, 32, 48, 64, 80 buttons 
-.PD-btn {
-  width: 70px;
-  height: 80px;
-  text-align: center;
-  background-color: #C0C0C0;
-  margin: 5px;
-  font-size: 24px;
-  margin-top: 20px;
-  margin-bottom: 70px;
-}
-
-.beamParam-btn {
-  width: 200px;
-  height: 80px;
-  text-align: left;
-  background-color: yellow;
-  margin: 5px;
-  font-size: 24px;
-  margin-bottom: -5px;
-}
-
-.beamParam {
-  border: 1px solid green ;
-}
-*/
 .beamParam {
   background-color: #C1E1C1;
   margin: 5px;
@@ -96,22 +70,6 @@ button {
   margin-bottom: -18px;
 }
 
-/*
-button.margin-right {
-  margin-right: 20px;
-}
-*/
-
-/*
-#pd-16 {
-  margin-left: 30px;
-}
-
-#pd-80 {
-  margin-right: 30px;
-}
-*/
-
 /*Highlighting plot type button currently selected with black border*/
 #btn-curve-clicked, #btn-photodiodes-clicked, #btn-errorbars-clicked {
   width: 155px;
@@ -139,17 +97,6 @@ button.margin-right {
   border-width: 5px;
   margin-top: 20px;
 }
-
-/*
-#pd-16:focus {
-  margin-left: 50px;
-}
-
-#pd-80:focus {
-  margin-right: 50px;
-}
-*/
-
 
 /* ************************* RESPONSIVITY ****************************** */
 /* This section focuses on the rescaling of all HTML elements to ensure
