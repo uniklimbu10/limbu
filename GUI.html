@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+@author: Unik Limbu
+@email: uniklimbu81@gmail.com
+@reference: Original developed by Fern Pannell 
+
+HTML base code required for the web display for the QuARC.
+Imports the required JavaScript libraries and links to the developed scripts.
+Defines user-control buttons with minimal CSS.
+Links to photodiode bars with curve and error bar pages.
+-->
+<html lang="en">
+  <head>
+        	<meta charset="UTF-8" />
+          <!--<meta name="viewport" content="width=device-width", initial-->
+          <!--<meta http-equiv="X-UA-Compatible">-->
+          <!-- Accessing D3 library from CDN -->
+          <script src="https://d3js.org/d3.v4.min.js"></script> 
+          <!-- Accesing D3 library by downloading the source code version 7.6.1 (11/07/22)-->
+          <!-- <script src="d3.min.js"></script> -->
+          <!-- linking the CSS for the display -->
+          <link rel="stylesheet" href="GUI.css" />
+          <!-- Load papaparse.js (parsing library for data) -->
+	        <script src="papaparse.min.js"></script> 
+
+  </head>
+
+  <body>
+    <div class="flex-parent jc-center">
+    <!-- FUNCTION BUTTONS -->
+    <!-- Creating start button -->
+    <button id="parse-start" class="func-btn">Start</button>
+    <!-- Refresh the page when the start button is clicked -->
+    <button id="parse-stop" class="func-btn" onClick="window.location.reload();">Stop</button>
+    <!-- Button to enable client-side selection of the y-axis maximum -->
+    <button id="range" class="func-btn">Range</button>
+    <!-- Text-entry box for the number of photodiodes -->
+    <button id="pd" class="func-btn">Photodiode Number</button>
+
+  </div>
+  
+  <style>
+    rect {
+      stroke: black;
+      stroke-width: 0.5px;
+    }
+  </style>
+
+  <svg></svg>
+
+  <!-- All the javascript for the display with bars only -->
+  <script src="GUI.js"></script>
+
+  </body>
+
+</html>
