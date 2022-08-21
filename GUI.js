@@ -14,6 +14,7 @@ var interval = 50; //Hz display
 //variable for the y-axis which corresponds to the photodiode intensities
 var minY = 0;
 let maxY = 600; //default - typical max charge in pC
+let setPhotodiodes = 80; //default 
 
 	//////// Client side functionality ////////
 
@@ -24,18 +25,6 @@ let maxY = 600; //default - typical max charge in pC
 	addEventListener('click', ()=> {
 		var range = window.prompt("Set upper value for y axis: ");
 		maxY = parseInt(range, 10);
-
-	});
-
-	//Rescaling the x-axis based on a user INPUT of photodiode numbers
-
-	let btn_pd=document.getElementById("pd").
-	addEventListener('click', ()=> {
-		var pd = window.prompt("Set value for photodiode number: ");
-		setPhotodiodes = parseInt(pd);
-		// Generates an array for the photodiode numbers depending on what the user inputted
-		xPD = Array.from({ length: setPhotodiodes}, (_,i) => i+1); 
-		//console.log(xPD); 
 
 	});
 
@@ -76,9 +65,12 @@ function createGraph(data) {
 		//create useable array of data for plotting
 		photodiodeData.push(data[0][i]);
 	}
-
 	//debug - check values are parsed correctly
 	//console.log(photodiodeData);
+
+	// Generates an array for the photodiode numbers depending on what the user inputted
+	xPD = Array.from({ length: setPhotodiodes}, (_,i) => i+1); 
+	//console.log(xPD); 
 
 	
 //Create Graph with parsed photodiode data

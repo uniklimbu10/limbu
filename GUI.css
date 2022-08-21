@@ -21,6 +21,11 @@ button {
   margin-bottom: 70px;
 }
 
+#number {
+  height: 3em;
+  width: 3em;
+}
+
 /* Photodiodes, Curves, Error Bar buttons */
 .type-btn {
   width: 155px;
