@@ -16,17 +16,24 @@ var minY = 0;
 let maxY = 600; //default - typical max charge in pC
 let setPhotodiodes = 80; //default 
 
-	//////// Client side functionality ////////
+//////// Client side functionality ////////
 
-	//Rescaling the y-axis based on a user INPUT of maximum y value
-	//via localhost window prompt
+//Rescaling the y-axis based on a user INPUT of maximum y value via localhost window prompt
+let btn_range=document.getElementById("range")
+                      .addEventListener('click', ()=> {
+						var range = window.prompt("Set upper value for y axis: ");
+						maxY = parseInt(range, 10);
+					});
 
-	let btn_range=document.getElementById("range").
-	addEventListener('click', ()=> {
-		var range = window.prompt("Set upper value for y axis: ");
-		maxY = parseInt(range, 10);
+//Rescalling the x-axis based on a user INPUT of photodiode numbers via text box
+function PDnum() {
+	var newPDnum = document.getElementById("PDnum").value;
+	//console.log(newPDnum)
+	setPhotodiodes = newPDnum;
+	//console.log(newPDnum);
+	//console.log(setPhotodiodes);
+	};
 
-	});
 
 //Parsing CSV values - photodiode data
 ////////////////////////////////////////////////////////////////////////////
@@ -148,8 +155,9 @@ svg.append("text")
        .attr("x", 300) 
        .attr("y", 38) //bigger will shift it down
        .attr("font-size", "32px")
-       .text("Quality Assurance Range Calorimeter GUI");    
-  
+       .text("Quality Assurance Range Calorimeter GUI");   
+		   
+
 }; 
 
 // This removes all the svg elements e.g. bar chart, axes, title, etc
