@@ -26,7 +26,8 @@ Links to photodiode bars with curve and error bar pages.
   </head>
 
   <body>
-    <div class="flex-parent jc-center">
+    <!-- <div class="flex-parent jc-center"> -->
+    <div>
     <!-- FUNCTION BUTTONS -->
     <!-- Creating start button -->
     <button id="parse-start" class="func-btn">Start</button>
@@ -34,12 +35,16 @@ Links to photodiode bars with curve and error bar pages.
     <button id="parse-stop" class="func-btn" onClick="window.location.reload();">Stop</button>
     <!-- Button to enable client-side selection of the y-axis maximum -->
     <button id="range" class="func-btn">Range</button>
-    <!-- Text-entry box for the number of photodiodes -->
+    <!-- Text-entry box for the number of photodiodes 
     <label for="PDnum" class="text-box">Photodiode Number:</label>
-    <input type="number" id="PDnum" name="PDnum" value="80" min="1" max="80">
+    <input type="number" id="PDnum" name="PDnum" value="80" min="1" max="80"> -->
+    <br><br><br><br>
+    <label for="PDnum"> Photodiode Number:</label>
+          <input type="number" id="PDnum" name="PDnum" value="80" min="1" max="80" required>     
+      <button onclick="PDnum()" id="enter">Enter</button> 
 
   </div>
-  
+
   <style>
     rect {
       stroke: black;
