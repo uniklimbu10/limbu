@@ -21,7 +21,7 @@ function PDnum() {
 	 //selects the value in the text box and save it to the varibale newPDnum
 	var newPDnum = document.getElementById("PDnum").value; 
 	setPhotodiodes = newPDnum;
-	//debugging to check
+	//debugging to check whether it updates the value
 	//console.log(newPDnum);
 	//console.log(setPhotodiodes);
 	};
@@ -30,7 +30,7 @@ function PDnum() {
 function upperY()	{
 	var upY = document.getElementById("upperY").value;
 	maxY = upY;
-	//debugging to check
+	//debugging to check whether it updates the value
 	//console.log(maxY);
 	//console.log(upY);
 }
