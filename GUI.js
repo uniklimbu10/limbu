@@ -15,25 +15,37 @@ var interval = 50; //Hz display
 var minY = 0;
 let maxY = 600; //default - typical max charge in pC
 let setPhotodiodes = 80; //default 
+photodiodeLabels_80 = ['1','2','3','4','5','6','7','8','9','10','11','12',
+'13','14','15','16','17','18','19','20','21','22','23','24','25','26',
+'27','28','29','30','31','32','33','34','35','36','37','38','39','40',
+'41','42','43','44','45','46','47','48','49','50','51','52','53','54',
+'55','56','57','58','59','60','61','62','63','64','65','66','67',
+'68','69','70','71','72','73','74','75','76','77','78','79','80'];
+
 
 //////// Client side functionality ////////
 
-//Rescaling the y-axis based on a user INPUT of maximum y value via localhost window prompt
-let btn_range=document.getElementById("range")
-                      .addEventListener('click', ()=> {
-						var range = window.prompt("Set upper value for y axis: ");
-						maxY = parseInt(range, 10);
-					});
-
 //Rescalling the x-axis based on a user INPUT of photodiode numbers via text box
 function PDnum() {
+	 //selects the value in the text box and save it to the varibale newPDnum
 	var newPDnum = document.getElementById("PDnum").value;
-	//console.log(newPDnum)
 	setPhotodiodes = newPDnum;
-	//console.log(newPDnum);
-	//console.log(setPhotodiodes);
+	console.log(newPDnum);
+	console.log(setPhotodiodes);
 	};
 
+function upperY()	{
+	var upY = document.getElementById("upperY").value;
+	maxY = upY;
+	console.log(maxY);
+	console.log(upY);
+}
+
+function del() {
+	d3.select("svg").remove;
+}
+btn = document.querySelector("button");
+btn.addEventListener("click", del);
 
 //Parsing CSV values - photodiode data
 ////////////////////////////////////////////////////////////////////////////
@@ -87,9 +99,10 @@ var width = 1350, height = 550;
 var margins = {top: 100, right: 100, bottom: 100, left: 100}; // Sets the margin
 
 // Create the SVG canvas
-var svg = d3.select('svg')
+var svg = d3.select('svg')             
             .attr('width', width)
-            .attr('height', height);
+            .attr('height', height)
+			.attr("id", "test");
 
 // Scales
 var xScale = d3.scaleBand()
@@ -122,6 +135,7 @@ svg.append('g')
 // X axis
 svg.append('g')
   .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
+  .attr("class", "myXaxis")
   .call(d3.axisBottom(xScale))
   //labels for the x axis
   .append("text")
@@ -137,6 +151,7 @@ svg.append('g')
 // Y axis
 svg.append('g')
   .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
+  .attr("class", "myYaxis")
   .call(d3.axisLeft(yScale))
   //labels for the y axis
   .append("text")
@@ -161,7 +176,11 @@ svg.append("text")
 }; 
 
 // This removes all the svg elements e.g. bar chart, axes, title, etc
-//d3.select("svg").remove(); 
+//d3.select("svg").remove();
+//function update() {
+
+//}
+
 
 } 
 
