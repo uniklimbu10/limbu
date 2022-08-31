@@ -13,7 +13,7 @@ var interval = 50; //Hz display
 
 //variable for the y-axis which corresponds to the photodiode intensities
 var minY = 0;
-let maxY = 600; //default - typical max charge in pC
+let maxY = 700; //default - typical max charge in pC
 let setPhotodiodes = 80; //default 
 
 //Rescalling the x-axis based on a user INPUT of photodiode numbers via text box
