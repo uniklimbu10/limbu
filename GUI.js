@@ -14,7 +14,7 @@ var interval = 50; //Hz display
 //variable for the y-axis which corresponds to the photodiode intensities
 var minY = 0;
 let maxY = 700; //default - typical max charge in pC
-let setPhotodiodes = 80; //default 
+let setPhotodiodes = 80; //default - largest value of photodiode in the csv file
 
 //Rescalling the x-axis based on a user INPUT of photodiode numbers via text box
 function PDnum() {
@@ -34,14 +34,6 @@ function upperY()	{
 	//console.log(maxY);
 	//console.log(upY);
 }
-
-/// Trying to code a function that does not generate overlapping graph/axes
-/*
-function del() {
-	d3.select("svg").remove;
-}
-btn = document.querySelector("button");
-btn.addEventListener("click", del); */
 
 //Parsing CSV values - photodiode data
 ////////////////////////////////////////////////////////////////////////////
@@ -86,33 +78,31 @@ function createGraph(data) {
 	// Generates an array for the photodiode numbers depending on what the user inputted
 	xPD = Array.from({ length: setPhotodiodes}, (_,i) => i+1); 
 	//console.log(xPD); 
-
 	
 //Create Graph with parsed photodiode data
 //////////////////////////////////////////////////////////////////////////
 
-var width = 1350, height = 550;
+var width = 1350, height = 550; // Sets the width and height for the graph
 var margins = {top: 100, right: 100, bottom: 100, left: 100}; // Sets the margin
 
 // Create the SVG canvas
 var svg = d3.select('svg')             
             .attr('width', width)
-            .attr('height', height)
-			.attr("id", "test");
+            .attr('height', height);
 
 // Scales
-var xScale = d3.scaleBand()
-	.domain(xPD) // Depends on what photodiode number button was clicked
-	.range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin	
+var xScale = d3.scaleBand() //  scaleBand() is used for categorical dataset
+	           .domain(xPD) // Depends on what photodiode number button was clicked
+	           .range([0, width - (margins.left+margins.right) ]); // Keeps the graph within the margin	
 
 var yScale = d3.scaleLinear()
-	.domain([minY, maxY])
-    .range([height - (margins.top+margins.bottom), 0]);
+               .domain([minY, maxY]) 
+			   .range([height - (margins.top+margins.bottom), 0]);
 
 // Margins around SVG canvas
 svg.append('g')
    .attr('transform', 'translate('+ margins.top +','+ margins.left +')')
-   .selectAll('rect')
+   .selectAll('rect') // creates rectangle which is used for bar chart
    .data(photodiodeData) // Parsed data 
    .enter()
    .append('rect')
@@ -130,53 +120,41 @@ svg.append('g')
 
 // X axis
 svg.append('g')
-  .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
-  .attr("class", "myXaxis")
-  .call(d3.axisBottom(xScale))
-  //labels for the x axis
-  .append("text")
-  // intially was height - margins.top - value and also bigger the value will shift it downwards
-         .attr("y", 140 - margins.top)
-         .attr("x", width-200)
-         .attr("text-anchor", "end")
-         .attr("stroke", "black")
-         .text("x-axis")
-		     .attr("font-size", "14px")
-         .text("Photodiode Number");
+   .attr('transform', 'translate('+ margins.left +','+ (height - margins.top) +')')
+   .call(d3.axisBottom(xScale))
+   //labels for the x axis
+   .append("text")
+   // intially was height - margins.top - value and also bigger the value will shift it downwards
+   .attr("y", 140 - margins.top) 
+   .attr("x", width-200)
+   .attr("text-anchor", "end")
+   .attr("stroke", "black")
+   .attr("font-size", "14px")
+   .text("Photodiode Number");
 
 // Y axis
 svg.append('g')
-  .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
-  .attr("class", "myYaxis")
-  .call(d3.axisLeft(yScale))
-  //labels for the y axis
-  .append("text")
-           .attr("transform", "rotate(-90)")
-           .attr("y", 20) //increasing this value shifts it to right
-           .attr("dy", "-5.1em")
-           .attr("text-anchor", "end")
-           .style("stroke", "black")
-           .style("stroke-width", 1)
-           .attr("font-size", "14px")
-           .text("Charge / pC");
+   .attr('transform', 'translate('+ margins.left +','+ margins.top +')')
+   .call(d3.axisLeft(yScale))
+   //labels for the y axis
+   .append("text")
+   .attr("transform", "rotate(-90)")
+   .attr("y", 20) //increasing this value shifts it to right
+   .attr("dy", "-5.1em") //shits the y axis label to the left
+   .attr("text-anchor", "end")
+   .style("stroke", "black")
+   .attr("font-size", "14px")
+   .text("Charge / pC"); 
 
 //creates the title on the svg            
 svg.append("text") 
-       .attr("transform", "translate(100,0)") //translates the text
-       .attr("x", 300) 
-       .attr("y", 38) //bigger will shift it down
-       .attr("font-size", "32px")
-       .text("Quality Assurance Range Calorimeter GUI");   
-		   
-
-}; 
-
-// This removes all the svg elements e.g. bar chart, axes, title, etc
-//d3.select("svg").remove();
-//function update() {
-
-//}
-
+   .attr("transform", "translate(100,0)") //translates the text
+   .attr("x", 300) 
+   .attr("y", 38) //bigger value will shift it downwards
+   .attr("font-size", "32px")
+   .text("Quality Assurance Range Calorimeter GUI");   
+	
+	}; 
 
 } 
 
